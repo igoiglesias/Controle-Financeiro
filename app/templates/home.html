@@ -1,0 +1,123 @@
+{% include 'common/header.html' %} 
+{% block content %}
+<section id="">
+    <div class="container-fluid page-wrap">
+        <!-- content here -->
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" style="padding-right: 10px;padding-top: 5px"><button class="btn btn-sm btn-success"><i class="glyphicon glyphicon-plus"></i></button>
+            <li role="presentation" class="active"><a href="#incomes-tab" aria-controls="incomes-tab" role="tab"
+                    data-toggle="tab">Receitas</a></li>
+            <li role="presentation"><a href="#expenses-tab" aria-controls="expenses-tab" role="tab"
+                    data-toggle="tab">Despesas</a></li>
+        </ul>
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade in active" id="incomes-tab">
+                <div class="table-responsive">
+                    <table class="table table-centered">
+                        <tbody>
+                            <tr>
+                                <td>Status</td>
+                                <td>Data</td>
+                                <td>Nome</td>
+                                <td>Valor</td>
+                                <td>Categoria</td>
+                                <td>Ações</td>
+                            </tr>
+                            <tr>
+                                <td>✔</td>
+                                <td>25/12</td>
+                                <td>Visie</td>
+                                <td>4000,00</td>
+                                <td>Salário</td>
+                                <td>
+                                    <button class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-pencil"></i></button>
+                                    <button class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>✔</td>
+                                <td>23/12</td>
+                                <td>Agencia</td>
+                                <td>2000,00</td>
+                                <td>Prolabore</td>
+                                <td>
+                                    <button class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-pencil"></i></button>
+                                    <button class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>✔</td>
+                                <td>05/12</td>
+                                <td>Freela</td>
+                                <td>2200,00</td>
+                                <td>Extra</td>
+                                <td>
+                                    <button class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-pencil"></i></button>
+                                    <button class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="expenses-tab">
+                <div class="table-responsive">
+                    <table class="table table-centered">
+                        <tbody>
+                            <tr>
+                                <td>Status</td>
+                                <td>Data</td>
+                                <td>Nome</td>
+                                <td>Valor</td>
+                                <td>Categoria</td>
+                                <td>Tipo</td>
+                                <td>Ações</td>
+                            </tr>
+                            <tr>
+                                <td>✔</td>
+                                <td>25/12</td>
+                                <td>Rede Economia</td>
+                                <td>600,00</td>
+                                <td>Alimentação</td>
+                                <td>Variável</td>
+                                <td>
+                                    <button class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-pencil"></i></button>
+                                    <button class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>✔</td>
+                                <td>23/12</td>
+                                <td>Sacolão</td>
+                                <td>64,00</td>
+                                <td>Alimentação</td>
+                                <td>Variável</td>
+                                <td>
+                                    <button class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-pencil"></i></button>
+                                    <button class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>✔</td>
+                                <td>05/12</td>
+                                <td>Luz</td>
+                                <td>500,00</td>
+                                <td>Casa</td>
+                                <td>Fixa</td>
+                                <td>
+                                    <button class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-pencil"></i></button>
+                                    <button class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- /tab-content -->
+    </div>
+    </div>
+  </section> 
+{% endblock%} 
+{% include 'common/footer.html' %}

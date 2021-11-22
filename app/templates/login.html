@@ -1,0 +1,42 @@
+{% include 'common/header.html' %} 
+{% block content %}
+<div class="row">
+    <div class="col-md-4 col-md-offset-4">
+      <h2>Login</h2>
+      <form action="" method="post">
+        {{ form.csrf_token }}
+        <div class="form-group">
+          <label> E-mail </label>
+          {{ form.email(class='form-control', placeholder='Nome do usuario') }}
+          {% if form.errors.username %}
+          <div class="alert alert-danger">
+            <ul>
+              {% for e in form.errors.username %}
+              <li>{{ e }}</li>
+              {% endfor %}
+            </ul>
+          </div>
+          {% endif %}
+        </div>
+        <div class="form-group">
+          <label> Senha </label>
+          {{ form.password(class='form-control') }} {% if form.errors.password %}
+          <div class="alert alert-danger">
+            <ul>
+              {% for e in form.errors.pasword %}
+              <li>{{ e }}</li>
+              {% endfor %}
+            </ul>
+          </div>
+          {% endif %}
+        </div>
+        <div class="checkbox">
+          <label> {{ form.remember_me() }} Lembre de Min </label>
+        </div>
+        <button class="btn btn-default" type="submit">Login</button>
+      </form>
+    </div>
+  </div>
+{% endblock%} 
+{% include 'common/footer.html' %} 
+
