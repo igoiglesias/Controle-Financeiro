@@ -1,3 +1,5 @@
+from datetime import datetime
+from operator import delitem
 from app import db, lm
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -17,12 +19,12 @@ class User(UserMixin, db.Model):
     created_on = db.Column(db.DateTime, server_default=db.func.now())
     updated_on = db.Column(db.DateTime, server_default=db.func.now(), server_onupdate=db.func.now())
 
-    def __init__(self, name, email, password):
+    def __init__(self, name: str, email: str, password: str) -> None:
         self.password = generate_password_hash(password, method='sha256')
         self.name = name
         self.email = email
 
-    def verify_password( user_password=None, form_password=None):
+    def verify_password( user_password: str = None, form_password: str = None) -> None:
         print(user_password, form_password)
         return check_password_hash(user_password, form_password)
     
@@ -38,10 +40,10 @@ class Category( db.Model):
     created_on = db.Column(db.DateTime, server_default=db.func.now())
     updated_on = db.Column(db.DateTime, server_default=db.func.now(), server_onupdate=db.func.now())
 
-    def __init__(self, name, description):
+    def __init__(self, name: str, description: str = '') -> None:
         self.name = name
         self.description = description
-    
+
     def __repr__(self):
         return f'<User {self.name}'
 
@@ -54,7 +56,7 @@ class Type( db.Model):
     created_on = db.Column(db.DateTime, server_default=db.func.now())
     updated_on = db.Column(db.DateTime, server_default=db.func.now(), server_onupdate=db.func.now())
 
-    def __init__(self, name, description):
+    def __init__(self, name: str, description: str) -> None:
         self.name = name
         self.description = description
     
@@ -69,13 +71,13 @@ class Income( db.Model):
     name = db.Column(db.String(50), nullable=False)
     description = db.Column(db.String(100), nullable=True)
     value = db.Column(db.String(100), nullable=False)
-    date = db.Column(db.DateTime, nullable=False)
+    date = db.Column(db.String(10), nullable=False)
     created_on = db.Column(db.DateTime, server_default=db.func.now())
     updated_on = db.Column(db.DateTime, server_default=db.func.now(), server_onupdate=db.func.now())
 
     category = db.relationship('Category', foreign_keys=category_id)
 
-    def __init__(self, name, description, value, date, category_id=None):
+    def __init__(self, name: str, description: str, value: str, date: datetime, category_id: int = None) -> None:
         self.name = name
         self.description = description
         self.value = value
@@ -94,14 +96,14 @@ class Expense( db.Model):
     name = db.Column(db.String(50), nullable=False)
     description = db.Column(db.String(100), nullable=True)
     value = db.Column(db.String(100), nullable=False)
-    date = db.Column(db.DateTime, nullable=False)
+    date = db.Column(db.String(10), nullable=False)
     created_on = db.Column(db.DateTime, server_default=db.func.now())
     updated_on = db.Column(db.DateTime, server_default=db.func.now(), server_onupdate=db.func.now())
 
     category = db.relationship('Category', foreign_keys=category_id)
     type = db.relationship('Type', foreign_keys=type_id)
 
-    def __init__(self, name, description, value, date, type, category_id=None):
+    def __init__(self, name: str, description: str, value: str, date: datetime, type: int, category_id: int = None) -> None:
         self.name = name
         self.description = description
         self.value = value
