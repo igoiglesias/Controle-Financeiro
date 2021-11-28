@@ -3,7 +3,7 @@ from flask import render_template, flash, redirect, request, url_for
 from flask_login import login_user, logout_user, login_required, current_user
 
 from app.models.forms import LoginForm
-from app.models.tables import Expense, User
+from app.models.tables import Expense, Income, User
 
 
 @app.route('/login', methods=['GET','POST'])
@@ -13,7 +13,6 @@ def login():
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
-        print(user.password, form.password.data)
         if user and User.verify_password(user.password, form.password.data):
             login_user(user)
             if request.args.get('next'):
@@ -30,7 +29,7 @@ def login():
 @login_required
 def home():
     expenses = Expense.query.all()
-    incomes = Expense.query.all()
+    incomes = Income.query.all()
     return render_template('home.html', expenses=expenses, incomes=incomes)
 
 @app.route('/perfil')

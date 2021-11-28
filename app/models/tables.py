@@ -13,16 +13,16 @@ class User(UserMixin, db.Model):
     __tablename__ = 'users'
 
     id = db.Column(db.Integer, primary_key=True)
-    password = db.Column(db.String, nullable=False)
     name = db.Column(db.String(100), nullable=False)
     email = db.Column(db.String(100), nullable=False, unique=True)
+    password = db.Column(db.String, nullable=False)
     created_on = db.Column(db.DateTime, server_default=db.func.now())
     updated_on = db.Column(db.DateTime, server_default=db.func.now(), server_onupdate=db.func.now())
 
     def __init__(self, name: str, email: str, password: str) -> None:
-        self.password = generate_password_hash(password, method='sha256')
         self.name = name
         self.email = email
+        self.password = generate_password_hash(password, method='sha256')
 
     def verify_password( user_password: str = None, form_password: str = None) -> None:
         print(user_password, form_password)
@@ -103,13 +103,13 @@ class Expense( db.Model):
     category = db.relationship('Category', foreign_keys=category_id)
     type = db.relationship('Type', foreign_keys=type_id)
 
-    def __init__(self, name: str, description: str, value: str, date: datetime, type: int, category_id: int = None) -> None:
+    def __init__(self, name: str, description: str, value: str, date: datetime, type_id: int, category_id: int = None) -> None:
         self.name = name
         self.description = description
         self.value = value
         self.date = date
         self.category_id = category_id
-        self.type = type
+        self.type_id = type_id
     
     def __repr__(self):
         return f'<User {self.name}'

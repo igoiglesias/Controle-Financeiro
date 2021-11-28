@@ -24,39 +24,20 @@
                                 <td>Categoria</td>
                                 <td>Ações</td>
                             </tr>
-                            <tr>
+                            {% for income in incomes %}
+                            <tr title="{{ income['description'] }}">
                                 <td>✔</td>
-                                <td>25/12</td>
-                                <td>Visie</td>
-                                <td>4000,00</td>
-                                <td>Salário</td>
+                                <td>{{ income['date'] | date }}</td>
+                                <td>{{ income['name'] }}</td>
+                                <td>{{ income['value'] }}</td>
+                                <td title="{{ income['category']['description'] }}" >{{ income['category']['name'] }}</td>
                                 <td>
                                     <button class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-pencil"></i></button>
                                     <button class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></button>
                                 </td>
                             </tr>
-                            <tr>
-                                <td>✔</td>
-                                <td>23/12</td>
-                                <td>Agencia</td>
-                                <td>2000,00</td>
-                                <td>Prolabore</td>
-                                <td>
-                                    <button class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-pencil"></i></button>
-                                    <button class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>✔</td>
-                                <td>05/12</td>
-                                <td>Freela</td>
-                                <td>2200,00</td>
-                                <td>Extra</td>
-                                <td>
-                                    <button class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-pencil"></i></button>
-                                    <button class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></button>
-                                </td>
-                            </tr>
+                            {% endfor %}
+                            
                         </tbody>
                     </table>
                 </div>
@@ -74,42 +55,21 @@
                                 <td>Tipo</td>
                                 <td>Ações</td>
                             </tr>
-                            <tr>
+                            {% for expense in expenses %}
+                            <tr title="{{ expense['description'] }}">
                                 <td>✔</td>
-                                <td>25/12</td>
-                                <td>Rede Economia</td>
-                                <td>600,00</td>
-                                <td>Alimentação</td>
-                                <td>Variável</td>
+                                <td>{{ expense['date'] | date }}</td>
+                                <td>{{ expense['name'] }}</td>
+                                <td>{{ expense['value'] }}</td>
+                                <td title="{{ expense['category']['description'] }}" >{{ expense['category']['name'] }}</td>
+                                <td title="{{ expense['type']['description'] }}" >{{ expense['type']['name'] }}</td>
                                 <td>
                                     <button class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-pencil"></i></button>
                                     <button class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></button>
                                 </td>
                             </tr>
-                            <tr>
-                                <td>✔</td>
-                                <td>23/12</td>
-                                <td>Sacolão</td>
-                                <td>64,00</td>
-                                <td>Alimentação</td>
-                                <td>Variável</td>
-                                <td>
-                                    <button class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-pencil"></i></button>
-                                    <button class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>✔</td>
-                                <td>05/12</td>
-                                <td>Luz</td>
-                                <td>500,00</td>
-                                <td>Casa</td>
-                                <td>Fixa</td>
-                                <td>
-                                    <button class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-pencil"></i></button>
-                                    <button class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></button>
-                                </td>
-                            </tr>
+                            {% endfor %}
+                            
                         </tbody>
                     </table>
                 </div>

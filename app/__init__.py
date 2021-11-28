@@ -17,5 +17,8 @@ lm.init_app(app)
 from app.models.seeds import Seed
 sd = Seed(app, db)
 
+from app.utils.filters import Filters
+ft = Filters()
+
 from app.models import tables, forms
 from app.controllers import default
