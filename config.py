@@ -1,6 +1,6 @@
 DEBUG = True
 ENV = 'development'
-SEED = True
+SEED = False
 
 SQLALCHEMY_DATABASE_URI = 'sqlite:///storage.db'
 SQLALCHEMY_TRACK_MODIFICATIONS = True 

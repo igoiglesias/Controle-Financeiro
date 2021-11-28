@@ -11,18 +11,120 @@
                     data-toggle="tab">Despesas</a></li>
         </ul>
         <!-- Tab panes -->
+        <div class="row" style="padding: 8px 8px;">
+            <div class="col-md-4" style="text-align: left;"><button id="previous-month" value='5' class="btn">< <span>Jan</span></button></div>
+            <div class="col-md-4" style="text-align: center;">
+                <button id="previous-year" class="btn"><</button>
+                <button id="actual-year" class="btn">2021</button>
+                <button id="next-year" class="btn">></button>
+            </div>
+            <div class="col-md-4" style="text-align: right;"><button id="next-month" value='7' class="btn"><span>Mar</span> ></button></div>
+        </div>
+        <script>
+            let previousMonth = document.getElementById('previous-month')
+            let nextMonth = document.getElementById('next-month')
+            let previousYear = document.getElementById('previous-year')
+            let actualYear = document.getElementById('actual-year')
+            let nextYear = document.getElementById('next-year')
+            const MONTHS = ['Jan','Feb','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez']
+            const TODAY = new Date();
+            const MONTH = TODAY.getMonth();
+            const YEAR = TODAY.getFullYear();
+            
+            function changeMonths(previous, next){
+                previousMonth.value = previous
+                previousMonth.firstElementChild.innerText = MONTHS[previousMonth.value]
+
+                nextMonth.value = next
+                nextMonth.firstElementChild.innerText = MONTHS[nextMonth.value]
+            }
+
+            function goToPreviousYear(){
+                actualYear.innerText = parseInt(actualYear.innerText)-1 
+            }
+
+            function goToNextYear(){
+                actualYear.innerText = parseInt(actualYear.innerText)+1
+            }
+
+            function startCalendar(year=null){
+                if(year){
+                    const PREVIOUS = 0
+                    const NEXT = 2
+                    
+                    changeMonths(PREVIOUS, NEXT)
+                    actualYear.innerText = year
+
+                    return
+                }
+                const PREVIOUS = MONTH - 1
+                const NEXT = MONTH + 1
+                
+                changeMonths(PREVIOUS, NEXT)
+                actualYear.innerText = YEAR
+            }
+
+            function goToPreviousMonth(){
+                prePreviousMonth = parseInt(previousMonth.value) - 1
+                if(prePreviousMonth < 0){
+                    let goToYear = parseInt(actualYear.innerText) - 1
+
+                    startCalendar(goToYear)
+                    return
+                }
+                const PREVIOUS = prePreviousMonth
+                const NEXT = parseInt(nextMonth.value) + 1
+
+                changeMonths(PREVIOUS, NEXT)
+            }
+
+            function goToNextMonth(){
+                preNextMonth = parseInt(nextMonth.value) + 1
+                if(preNextMonth > 11){
+                    let goToYear = parseInt(actualYear.innerText) + 1
+
+                    startCalendar(goToYear)
+                    return
+                }
+                const PREVIOUS = preNextMonth
+                const NEXT = parseInt(previousMonth.value) + 1
+                
+                changeMonths(PREVIOUS, NEXT)
+            }
+
+            
+            
+            previousMonth.addEventListener('click', () => {
+                goToPreviousMonth()
+            })
+
+            nextMonth.addEventListener('click', () => {
+                goToNextMonth()
+            })
+
+            previousYear.addEventListener('click', () => {
+                goToPreviousYear()
+            })
+
+            nextYear.addEventListener('click', () => {
+                goToNextYear()
+            })
+
+            startCalendar()
+        
+        </script>
         <div class="tab-content">
             <div role="tabpanel" class="tab-pane fade in active" id="incomes-tab">
                 <div class="table-responsive">
                     <table class="table table-centered">
                         <tbody>
                             <tr>
-                                <td>Status</td>
-                                <td>Data</td>
-                                <td>Nome</td>
-                                <td>Valor</td>
-                                <td>Categoria</td>
-                                <td>Ações</td>
+                                <th>Status</th>
+                                <th>Data</th>
+                                <th>Nome</th>
+                                <th>Valor</th>
+                                <th>Categoria</th>
+                                <th>Ações</th>
                             </tr>
                             {% for income in incomes %}
                             <tr title="{{ income['description'] }}">
@@ -47,13 +149,13 @@
                     <table class="table table-centered">
                         <tbody>
                             <tr>
-                                <td>Status</td>
-                                <td>Data</td>
-                                <td>Nome</td>
-                                <td>Valor</td>
-                                <td>Categoria</td>
-                                <td>Tipo</td>
-                                <td>Ações</td>
+                                <th>Status</th>
+                                <th>Data</th>
+                                <th>Nome</th>
+                                <th>Valor</th>
+                                <th>Categoria</th>
+                                <th>Tipo</th>
+                                <th>Ações</th>
                             </tr>
                             {% for expense in expenses %}
                             <tr title="{{ expense['description'] }}">
@@ -81,3 +183,9 @@
   </section> 
 {% endblock%} 
 {% include 'common/footer.html' %}
+
+<style>
+    th, td{
+        text-align: center;
+    }
+</style>
