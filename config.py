@@ -1,8 +1,0 @@
-DEBUG = True
-ENV = 'development'
-SEED = False
-
-SQLALCHEMY_DATABASE_URI = 'sqlite:///storage.db'
-SQLALCHEMY_TRACK_MODIFICATIONS = True 
-
-SECRET_KEY='b995012dbf0cb714917f68c7e95fb6dcda391bd5'
