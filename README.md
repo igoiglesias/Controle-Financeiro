@@ -6,6 +6,10 @@
 
 # Setup
 
+   ## Create `config.py`
+
+         Rename `config.py.sample` to `config.py`  
+
    ## Create the virtualenv
      
          virtualenv -p 3.8 venv
